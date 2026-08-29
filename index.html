@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Campus Issue - Selvam College of Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(90deg, #f8f9ff 0%, #ffffff 100%);
+            color: #091426;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 0 24px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .header-logo {
+            width: 36px;
+            height: 36px;
+            background: #0f172a;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .header-text h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 24px;
+        }
+
+        .header-text p {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .header-status {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 999px;
+            padding: 6px 12px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+
+        .header-status svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #091426;
+            margin-bottom: 16px;
+            line-height: 40px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #45474c;
+            margin-bottom: 16px;
+            line-height: 28px;
+            max-width: 672px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .privacy-banner {
+            background: rgba(108, 248, 187, 0.2);
+            border-radius: 8px;
+            padding: 8px 16px;
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #006c49;
+            font-weight: 500;
+        }
+
+        .privacy-banner svg {
+            width: 16px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: white;
+            border: 1px solid #c5c6cd;
+            border-radius: 12px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+            padding: 41px;
+            max-width: 896px;
+            margin: 0 auto;
+        }
+
+        /* Categories Section */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+        }
+
+        .section-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #091426;
+            margin-bottom: 4px;
+            line-height: 28px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: #45474c;
+            line-height: 24px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .category-card {
+            background: white;
+            border: 2px solid #c5c6cd;
+            border-radius: 8px;
+            padding: 17px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .category-card:hover {
+            border-color: #1e293b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-card.selected {
+            border-color: #1e293b;
+            background: #f0f4ff;
+            box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
+        }
+
+        .category-card svg {
+            width: 20px;
+            height: auto;
+            margin-bottom: 12px;
+        }
+
+        .category-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #091426;
+            margin-bottom: 4px;
+            line-height: 20px;
+        }
+
+        .category-card p {
+            font-size: 12px;
+            color: #45474c;
+            line-height: 15px;
+            font-weight: 500;
+        }
+
+        /* Separator */
+        .separator {
+            height: 1px;
+            background: #c5c6cd;
+            margin: 40px 0;
+        }
+
+        /* Form Fields */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #091426;
+            margin-bottom: 8px;
+            line-height: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #c5c6cd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #091426;
+            resize: vertical;
+            min-height: 120px;
+            line-height: 24px;
+        }
+
+        textarea::placeholder {
+            color: #45474c;
+        }
+
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #c5c6cd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #0b1c30;
+            background: white;
+            cursor: pointer;
+            line-height: 24px;
+            appearance: none;
+            padding-right: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23091426' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 24px;
+            padding-right: 36px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #1e293b;
+            box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
+        }
+
+        /* Photo Upload */
+        .photo-upload {
+            border: 2px dashed #c5c6cd;
+            border-radius: 8px;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-upload:hover {
+            border-color: #1e293b;
+            background: rgba(30, 41, 59, 0.05);
+        }
+
+        .photo-upload input[type="file"] {
+            display: none;
+        }
+
+        .photo-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #091426;
+        }
+
+        .photo-upload-label svg {
+            width: 22px;
+            height: 20px;
+        }
+
+        .photo-upload-hint {
+            font-size: 12px;
+            color: #45474c;
+            margin-top: 8px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .photo-preview {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #006c49;
+            font-weight: 500;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #eff4ff;
+            border: 1px solid #c5c6cd;
+            border-radius: 8px;
+            padding: 17px;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .info-box svg {
+            width: 20px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .info-box-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #091426;
+            margin-bottom: 4px;
+            line-height: 20px;
+        }
+
+        .info-box-content p {
+            font-size: 16px;
+            color: #45474c;
+            line-height: 24px;
+        }
+
+        /* Button */
+        .submit-section {
+            border-top: 1px solid #c5c6cd;
+            padding-top: 17px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        button {
+            background: #1e293b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        button:hover {
+            background: #0f172a;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+
+        .submit-note {
+            font-size: 12px;
+            color: #45474c;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .submit-note svg {
+            width: 9px;
+            height: 12px;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message h3 {
+            color: #15803d;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .success-message p {
+            color: #166534;
+            margin-bottom: 16px;
+        }
+
+        .report-id {
+            background: white;
+            border: 1px solid #86efac;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 16px 0;
+            font-weight: 600;
+            color: #15803d;
+            font-size: 16px;
+            word-break: break-all;
+        }
+
+        .success-button {
+            background: #22c55e;
+            margin-top: 16px;
+            display: inline-block;
+        }
+
+        .success-button:hover {
+            background: #16a34a;
+        }
+
+        /* Error Message */
+        .error-message {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            color: #991b1b;
+            font-size: 14px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: #eff4ff;
+            border-top: 1px solid #c5c6cd;
+            padding: 41px 24px 40px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #091426;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand p {
+            font-size: 12px;
+            color: #45474c;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #45474c;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: #1e293b;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+
+            .form-container {
+                padding: 24px;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .hero h2 {
+                font-size: 24px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-header h3 {
+                font-size: 18px;
+            }
+
+            .header {
+                padding: 0 16px;
+            }
+
+            .header-text h1 {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-brand {
+                gap: 8px;
+            }
+
+            .header-logo {
+                width: 32px;
+                height: 32px;
+            }
+
+            .header-text h1 {
+                font-size: 14px;
+            }
+
+            .header-text p {
+                font-size: 11px;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .validation-error {
+            border-color: #dc2626 !important;
+        }
+
+        .validation-error-text {
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <div class="header-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7V12C2 16.5 5.4 20.6 10 21.9C14.6 20.6 18 16.5 18 12V7L12 2M12 4.18L16 6.3V12C16 15.1 13.9 17.8 11 18.9V4.18M12 4.18L8 6.3V12C8 15.1 10.1 17.8 13 18.9V4.18Z"/>
+                    <path d="M12 8C10.9 8 10 8.9 10 10C10 11.1 10.9 12 12 12C13.1 12 14 11.1 14 10C14 8.9 13.1 8 12 8Z"/>
+                </svg>
+            </div>
+            <div class="header-text">
+                <h1>Selvam College of Technology</h1>
+                <p>Institutional website</p>
+            </div>
+        </div>
+        <div class="header-status">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9L10 17Z"/>
+            </svg>
+            No login required
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h2>Report a Campus Issue</h2>
+            <p>Something on campus needs attention? Let us know. Report an issue and help us keep the campus better for everyone.</p>
+            <div class="privacy-banner">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9L10 17Z"/>
+                </svg>
+                Your privacy matters. No account or login is required to submit a report.
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>✓ Report submitted successfully</h3>
+            <p>Thank you for helping us improve the campus.</p>
+            <div class="report-id" id="reportIdDisplay"></div>
+            <button class="success-button" onclick="resetForm()">Submit Another Report</button>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="errorMessage"></div>
+
+        <!-- Form -->
+        <form class="form-container" id="reportForm">
+            <!-- Categories Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h3>What would you like to report?</h3>
+                    <p>Select the category that best fits your issue.</p>
+                </div>
+                <div class="categories-grid" id="categoriesGrid"></div>
+            </div>
+
+            <div class="separator"></div>
+
+            <!-- Report Details Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h3>Tell us what's wrong</h3>
+                    <p>Provide a few details to help us fix it faster.</p>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group full-width">
+                        <label for="issue">Issue - Briefly describe the problem</label>
+                        <textarea id="issue" placeholder="Example: 3 computers in the computer lab are not working." required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="location">Where is it? - Select location</label>
+                        <select id="location" required>
+                            <option value="">Select a location...</option>
+                            <option value="Computer Lab">Computer Lab</option>
+                            <option value="Classroom">Classroom</option>
+                            <option value="Library">Library</option>
+                            <option value="Cafeteria">Cafeteria</option>
+                            <option value="Washroom">Washroom</option>
+                            <option value="Corridor">Corridor</option>
+                            <option value="Auditorium">Auditorium</option>
+                            <option value="Sports Ground">Sports Ground</option>
+                            <option value="Parking Area">Parking Area</option>
+                            <option value="Office">Office</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Photo Upload (Optional)</label>
+                        <div class="photo-upload">
+                            <input type="file" id="photoInput" accept="image/*">
+                            <label for="photoInput" class="photo-upload-label">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                                </svg>
+                                + Add Photo
+                            </label>
+                        </div>
+                        <div class="photo-upload-hint">A photo can help us understand the issue faster.</div>
+                        <div class="photo-preview" id="photoPreview"></div>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div class="info-box">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                    <div class="info-box-content">
+                        <h4>Report privately</h4>
+                        <p>Your report will be shared with the appropriate college staff only to help resolve the issue.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Section -->
+            <div class="submit-section">
+                <button type="submit">Submit Report</button>
+                <div class="submit-note">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 1C6.48 1 2 5.48 2 11s4.48 10 10 10 10-4.48 10-10S17.52 1 12 1zm-2 15l-5-5 1.41-1.41L10 13.17l7.59-7.59L19 7l-9 9z"/>
+                    </svg>
+                    No login required · Your information is kept private
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>Selvam College of Technology</h4>
+                <p>© 2024 Selvam College Campus Services. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Campus Map</a>
+                <a href="#">Contact Maintenance</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration - UPDATE THIS WITH YOUR GOOGLE APPS SCRIPT URL
+        const GOOGLE_APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_DEPLOYMENT_URL_HERE';
+
+        // Category data matching Figma design exactly
+        const categories = [
+            {
+                id: 'computer-lab',
+                name: 'Computer Lab',
+                description: 'Computers, internet, software or lab access issues'
+            },
+            {
+                id: 'lab-equipment',
+                name: 'Lab Equipment',
+                description: 'Missing, damaged or faulty laboratory equipment'
+            },
+            {
+                id: 'classroom',
+                name: 'Classroom',
+                description: 'Desks, chairs, fans, lights or classroom facilities'
+            },
+            {
+                id: 'washroom',
+                name: 'Washroom',
+                description: 'Cleanliness, water supply or maintenance issues'
+            },
+            {
+                id: 'electricity',
+                name: 'Electricity',
+                description: 'Lights, fans, power supply or electrical problems'
+            },
+            {
+                id: 'cleanliness',
+                name: 'Cleanliness',
+                description: 'Waste, cleaning or general hygiene concerns'
+            },
+            {
+                id: 'campus-facilities',
+                name: 'Campus Facilities',
+                description: 'Buildings, common areas or other facilities'
+            },
+            {
+                id: 'transport',
+                name: 'Transport',
+                description: 'College bus, parking or transportation issues'
+            },
+            {
+                id: 'library',
+                name: 'Library',
+                description: 'Library facilities, computers or study-area issues'
+            },
+            {
+                id: 'internet',
+                name: 'Internet / Wi-Fi',
+                description: 'Connectivity, speed or network problems'
+            },
+            {
+                id: 'maintenance',
+                name: 'Maintenance',
+                description: 'Repairs or general maintenance problems'
+            },
+            {
+                id: 'other',
+                name: 'Other',
+                description: 'Something else that needs attention'
+            }
+        ];
+
+        // SVG icons for categories
+        const categoryIcons = {
+            'computer-lab': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14l4 4V5c0-1.1-.9-2-2-2zm-2 12h-8v2h8v-2zm0-4H4V5h14v6z"/></svg>',
+            'lab-equipment': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>',
+            'classroom': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>',
+            'washroom': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>',
+            'electricity': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>',
+            'cleanliness': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>',
+            'campus-facilities': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg>',
+            'transport': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm11 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM5 11l1.5-4.5h11L19 11H5z"/></svg>',
+            'library': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>',
+            'internet': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>',
+            'maintenance': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>',
+            'other': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>'
+        };
+
+        let selectedCategory = null;
+        let photoFile = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCategories();
+            setupPhotoUpload();
+            document.getElementById('reportForm').addEventListener('submit', handleFormSubmit);
+        });
+
+        // Render category cards
+        function renderCategories() {
+            const grid = document.getElementById('categoriesGrid');
+            grid.innerHTML = categories.map(category => `
+                <div class="category-card" data-category="${category.id}" onclick="selectCategory('${category.id}')">
+                    ${categoryIcons[category.id]}
+                    <h4>${category.name}</h4>
+                    <p>${category.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Select category
+        function selectCategory(categoryId) {
+            selectedCategory = categoryId;
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-category="${categoryId}"]`).classList.add('selected');
+        }
+
+        // Photo upload
+        function setupPhotoUpload() {
+            document.getElementById('photoInput').addEventListener('change', function(e) {
+                photoFile = e.target.files[0];
+                if (photoFile) {
+                    document.getElementById('photoPreview').innerHTML = `✓ Photo selected: ${photoFile.name}`;
+                }
+            });
+        }
+
+        // Form submission
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // Validation
+            if (!selectedCategory) {
+                showError('Please select a category');
+                return;
+            }
+
+            const issue = document.getElementById('issue').value.trim();
+            const location = document.getElementById('location').value;
+
+            if (!issue) {
+                showError('Please describe the issue');
+                document.getElementById('issue').classList.add('validation-error');
+                return;
+            }
+
+            if (!location) {
+                showError('Please select a location');
+                document.getElementById('location').classList.add('validation-error');
+                return;
+            }
+
+            // Get selected category name
+            const categoryName = categories.find(c => c.id === selectedCategory).name;
+
+            // Handle photo upload if present
+            let photoUrl = '';
+            if (photoFile) {
+                photoUrl = await uploadPhotoToGoogleDrive(photoFile);
+            }
+
+            // Submit to Google Sheet
+            await submitToGoogleSheet({
+                issue: categoryName,
+                location: location,
+                complaint: issue,
+                photoUrl: photoUrl
+            });
+        }
+
+        // Mock photo upload (in production, implement proper image hosting)
+        async function uploadPhotoToGoogleDrive(file) {
+            // For now, return a placeholder
+            // In production: upload to Google Drive via API and return URL
+            return `Photo: ${file.name}`;
+        }
+
+        // Submit to Google Sheet
+        async function submitToGoogleSheet(data) {
+            if (!GOOGLE_APPS_SCRIPT_URL || GOOGLE_APPS_SCRIPT_URL.includes('YOUR_')) {
+                showError('Google Apps Script URL not configured. Contact administrator.');
+                return;
+            }
+
+            const button = document.querySelector('button[type="submit"]');
+            button.disabled = true;
+            button.textContent = 'Submitting...';
+
+            try {
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showSuccess(result.reportId);
+                } else {
+                    showError(result.error || 'Submission failed. Please try again.');
+                }
+            } catch (error) {
+                showError('Network error. Please check your connection and try again.');
+                console.error('Error:', error);
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Submit Report';
+            }
+        }
+
+        // Show success message
+        function showSuccess(reportId) {
+            document.getElementById('reportForm').style.display = 'none';
+            document.getElementById('successMessage').classList.add('show');
+            document.getElementById('reportIdDisplay').textContent = reportId;
+            document.getElementById('errorMessage').classList.remove('show');
+            window.scrollTo(0, 0);
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+            window.scrollTo(0, 0);
+        }
+
+        // Reset form
+        function resetForm() {
+            selectedCategory = null;
+            photoFile = null;
+            document.getElementById('reportForm').reset();
+            document.getElementById('photoPreview').innerHTML = '';
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('successMessage').classList.remove('show');
+            document.getElementById('reportForm').style.display = 'block';
+            document.getElementById('errorMessage').classList.remove('show');
+            document.querySelectorAll('.validation-error').forEach(el => {
+                el.classList.remove('validation-error');
+            });
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
